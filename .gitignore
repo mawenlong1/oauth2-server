@@ -1,0 +1,5 @@
+*.exe
+.idea/
+.vscode/
+vendor/
+.DS_Store
