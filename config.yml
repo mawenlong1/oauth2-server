@@ -1,0 +1,20 @@
+database:
+  type: mysql
+  host: 111.231.228.108
+  port: 3306
+  user: root
+  password: 123456
+  databasename: oauth2-server
+  maxidleconns: 5
+  maxopenconns: 5
+oauth:
+  accesstokenlifetime: 3600
+  refreshtokenlifetime: 1209600
+  authcodelifetime: 3600
+session:
+  secret: test_secret
+  path: /
+  maxage: 604800
+  httponly: True
+serverport: 8080
+isdev: True
