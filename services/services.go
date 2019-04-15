@@ -1,8 +1,8 @@
 package services
 
 import (
-	"mwl/oauth2-server/config"
-	"mwl/oauth2-server/log"
+	"oauth2-server/config"
+	"oauth2-server/log"
 
 	"github.com/jinzhu/gorm"
 )

@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"mwl/oauth2-server/config"
-	"mwl/oauth2-server/database"
+	"oauth2-server/config"
+	"oauth2-server/database"
 
 	"github.com/jinzhu/gorm"
 )

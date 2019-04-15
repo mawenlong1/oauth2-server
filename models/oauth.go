@@ -2,7 +2,7 @@ package models
 
 import (
 	"database/sql"
-	"mwl/oauth2-server/util"
+	"oauth2-server/util"
 	"time"
 
 	"github.com/jinzhu/gorm"

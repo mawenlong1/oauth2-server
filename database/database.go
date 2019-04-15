@@ -2,8 +2,8 @@ package database
 
 import (
 	"fmt"
-	"mwl/oauth2-server/config"
-	"mwl/oauth2-server/log"
+	"oauth2-server/config"
+	"oauth2-server/log"
 	"time"
 
 	"github.com/jinzhu/gorm"

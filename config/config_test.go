@@ -1,8 +1,8 @@
 package config_test
 
 import (
-	"mwl/oauth2-server/config"
-	"mwl/oauth2-server/log"
+	"oauth2-server/config"
+	"oauth2-server/log"
 	"testing"
 )
 

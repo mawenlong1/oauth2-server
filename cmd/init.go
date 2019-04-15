@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"mwl/oauth2-server/models"
-	"mwl/oauth2-server/util/migrations"
+	"oauth2-server/models"
+	"oauth2-server/util/migrations"
 )
 
 // Init 创建表结构

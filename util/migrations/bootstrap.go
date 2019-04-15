@@ -2,7 +2,7 @@ package migrations
 
 import (
 	"fmt"
-	"mwl/oauth2-server/log"
+	"oauth2-server/log"
 
 	"github.com/jinzhu/gorm"
 )

@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"mwl/oauth2-server/log"
-	"mwl/oauth2-server/services"
-	"mwl/oauth2-server/util/response"
 	"net/http"
+	"oauth2-server/log"
+	"oauth2-server/services"
+	"oauth2-server/util/response"
 	"time"
 
 	"github.com/gorilla/mux"
