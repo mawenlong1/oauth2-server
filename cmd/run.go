@@ -1,10 +1,8 @@
 package cmd
 
 import (
-	"mwl/oauth2-server/log"
-	"mwl/oauth2-server/services"
-	"mwl/oauth2-server/util/response"
-	"net/http"
+	"oauth2-server/services"
+	"strconv"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -31,20 +29,8 @@ func Run(configFile string) error {
 	app := negroni.Classic()
 	// app.Use(gzip.Gzip(gzip.DefaultCompression))
 	router := mux.NewRouter()
-	router.HandleFunc("/", HomeHandler)
-	router.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-		log.INFO.Println("hello")
-		w.Write([]byte("hello"))
-	})
+	services.HealthService.RegisterRouters(router, "/v1")
 	app.UseHandler(router)
-	graceful.Run(":3001", 10*time.Second, app)
+	graceful.Run(":"+strconv.Itoa(cfg.ServerPort), 10*time.Second, app)
 	return nil
-}
-
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	log.INFO.Println("test")
-	response.WriteJSON(w, map[string]interface{}{
-		"healthy": true,
-	}, 200)
-	w.Write([]byte("test"))
 }

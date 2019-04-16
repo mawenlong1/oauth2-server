@@ -16,5 +16,5 @@ session:
   path: /
   maxage: 604800
   httponly: True
-serverport: 8080
+serverport: 3001
 isdev: True

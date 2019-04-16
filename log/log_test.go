@@ -1,7 +1,7 @@
 package log_test
 
 import (
-	"mwl/oauth2-server/log"
+	"oauth2-server/log"
 	"testing"
 )
 

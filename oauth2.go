@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"mwl/oauth2-server/cmd"
+	"oauth2-server/cmd"
 	"os"
 
 	"github.com/urfave/cli"

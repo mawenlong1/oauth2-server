@@ -2,7 +2,7 @@ package models
 
 import (
 	"fmt"
-	"mwl/oauth2-server/util/migrations"
+	"oauth2-server/util/migrations"
 
 	"github.com/jinzhu/gorm"
 )
