@@ -15,5 +15,6 @@ require (
 	github.com/stretchr/testify v1.3.0
 	github.com/urfave/cli v1.20.0
 	github.com/urfave/negroni v1.0.0
+	golang.org/x/crypto v0.0.0-20190411191339-88737f569e3a
 	gopkg.in/tylerb/graceful.v1 v1.2.15
 )
