@@ -75,6 +75,7 @@ func (m *loggedInMiddleware) ServeHTTP(w http.ResponseWriter, r *http.Request, n
 }
 
 func (m *loggedInMiddleware) authenticate(session *session.UserSession) error {
+	log.INFO.Println("clientMiddleware，需要调用oauth，暂时未实现")
 	return nil
 }
 

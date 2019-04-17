@@ -25,6 +25,13 @@ var DefaultConfig = &Config{
 		MaxAge:   86400 * 7,
 		HTTPOnly: true,
 	},
+	Redis: RedisConfig{
+		Host:         "localhost",
+		Port:         6379,
+		Password:     "",
+		MaxIdleConns: 5,
+	},
+	ServerPort:    8080,
 	IsDevelopment: true,
 }
 
