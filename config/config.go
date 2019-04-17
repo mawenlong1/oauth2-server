@@ -27,11 +27,20 @@ type SessionConfig struct {
 	HTTPOnly bool   `default:"True"`
 }
 
+// redis配置
+type RedisConfig struct {
+	Host         string `default:"localhost"`
+	Port         int    `default:"6379"`
+	Password     string `default:""`
+	MaxIdleConns int    `default:"10"`
+}
+
 // Config 总体配置
 type Config struct {
 	Database      DatabaseConfig
 	Oauth         OauthConfig
 	Session       SessionConfig
+	Redis         RedisConfig
 	ServerPort    int  `default:"8080"`
 	IsDevelopment bool `default:"True"`
 }

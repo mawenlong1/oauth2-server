@@ -18,3 +18,8 @@ session:
   httponly: True
 serverport: 3001
 isdev: True
+redis:
+  host: 111.231.228.108
+  port: 6379
+  password:
+  maxidleconns: 10

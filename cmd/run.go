@@ -30,6 +30,7 @@ func Run(configFile string) error {
 	// app.Use(gzip.Gzip(gzip.DefaultCompression))
 	router := mux.NewRouter()
 	services.HealthService.RegisterRouters(router, "/v1")
+	services.WebService.RegisterRoutes(router, "/web")
 	app.UseHandler(router)
 	graceful.Run(":"+strconv.Itoa(cfg.ServerPort), 10*time.Second, app)
 	return nil
