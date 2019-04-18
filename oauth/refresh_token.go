@@ -3,6 +3,7 @@ package oauth
 import (
 	"errors"
 	"oauth2-server/models"
+	"oauth2-server/util"
 	"time"
 )
 
@@ -56,4 +57,22 @@ func (s *Service) GetValidRefreshToken(token string, client *models.OauthClient)
 		return nil, ErrRefreshTokenExpired
 	}
 	return refreshToken, nil
+}
+
+func (s *Service) getRefreshTokenScope(refreshToken *models.OauthRefreshToken, requestedScope string) (string, error) {
+	var (
+		scope = refreshToken.Scope
+		err   error
+	)
+
+	if requestedScope != "" {
+		scope, err = s.GetScope(requestedScope)
+		if err != nil {
+			return "", err
+		}
+	}
+	if !util.SpaceDelimitedStringNotGreater(scope, refreshToken.Scope) {
+		return "", ErrRequestedScopeCannotBeGreater
+	}
+	return scope, nil
 }

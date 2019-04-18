@@ -27,7 +27,7 @@ func (s *Service) GrantAuthorizationCode(client *models.OauthClient, user *model
 	return authorizationCode, nil
 }
 
-func (s *Service) getAuthorizationCode(code, redirectURI string, client *models.OauthClient) (*models.OauthAuthorizationCode, error) {
+func (s *Service) getValidAuthorizationCode(code, redirectURI string, client *models.OauthClient) (*models.OauthAuthorizationCode, error) {
 	authorizationCode := new(models.OauthAuthorizationCode)
 	notFound := models.OauthAuthorizationCodePreload(s.db).Where("client_id=?", client.ID).Where("code=?", code).First(authorizationCode).RecordNotFound()
 
