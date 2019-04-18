@@ -13,31 +13,31 @@ import (
 )
 
 var (
-	//MinPasswordLength ..
+	// MinPasswordLength ..
 	MinPasswordLength = 6
-	//ErrPasswordTooShort ..
+	// ErrPasswordTooShort ..
 	ErrPasswordTooShort = fmt.Errorf(
 		"密码至少%d个字符",
 		MinPasswordLength)
-	//ErrUserNotFound ...
+	// ErrUserNotFound ...
 	ErrUserNotFound = errors.New("User not found")
-	//ErrInvalidUserPassword ...
+	// ErrInvalidUserPassword ...
 	ErrInvalidUserPassword = errors.New("Invaild user password")
-	//ErrCannotSetEmptyUsername ...
+	// ErrCannotSetEmptyUsername ...
 	ErrCannotSetEmptyUsername = errors.New("Cannot set empty username")
-	//ErrUserPasswordNotSet ...
+	// ErrUserPasswordNotSet ...
 	ErrUserPasswordNotSet = errors.New("User password not set")
-	//ErrUsernameTaken ...
+	// ErrUsernameTaken ...
 	ErrUsernameTaken = errors.New("Username taken")
 )
 
-//UserExists ...
+// UserExists ...
 func (s *Service) UserExists(username string) bool {
 	_, err := s.FindUserByUserName(username)
 	return err == nil
 }
 
-//FindUserByUserName ...
+// FindUserByUserName ...
 func (s *Service) FindUserByUserName(username string) (*models.OauthUser, error) {
 	user := new(models.OauthUser)
 	notFound := s.db.Where("username=LOWER(?)", username).First(user).RecordNotFound()
@@ -47,12 +47,12 @@ func (s *Service) FindUserByUserName(username string) (*models.OauthUser, error)
 	return user, nil
 }
 
-//CreateUser ...
+// CreateUser ...
 func (s *Service) CreateUser(roleID, username, password string) (*models.OauthUser, error) {
 	return s.createUserCommon(s.db, roleID, username, password)
 }
 
-//CreateUserTx ..
+// CreateUserTx ..
 func (s *Service) CreateUserTx(tx *gorm.DB, roleID, username, password string) (*models.OauthUser, error) {
 	return s.createUserCommon(tx, roleID, username, password)
 }
@@ -86,12 +86,12 @@ func (s *Service) createUserCommon(db *gorm.DB, roleID, username, password strin
 	return user, nil
 }
 
-//SetPassword ...
+// SetPassword ...
 func (s *Service) SetPassword(user *models.OauthUser, password string) error {
 	return s.setPasswordCommon(s.db, user, password)
 }
 
-//SetPasswordTx ...
+// SetPasswordTx ...
 func (s *Service) SetPasswordTx(tx *gorm.DB, user *models.OauthUser, password string) error {
 	return s.setPasswordCommon(tx, user, password)
 }
@@ -111,12 +111,12 @@ func (s *Service) setPasswordCommon(db *gorm.DB, user *models.OauthUser, passwor
 	}).Error
 }
 
-//UpdateUsername ...
+// UpdateUsername ...
 func (s *Service) UpdateUsername(user *models.OauthUser, username string) error {
 	return s.updateUsernameCommon(s.db, user, username)
 }
 
-//UpdateUsernameTx ...
+// UpdateUsernameTx ...
 func (s *Service) UpdateUsernameTx(tx *gorm.DB, user *models.OauthUser, username string) error {
 	return s.updateUsernameCommon(tx, user, username)
 }
@@ -127,7 +127,7 @@ func (s *Service) updateUsernameCommon(db *gorm.DB, user *models.OauthUser, user
 	return db.Model(user).UpdateColumn("username", strings.ToLower(username)).Error
 }
 
-//AuthUser ...
+// AuthUser ...
 func (s *Service) AuthUser(username, password string) (*models.OauthUser, error) {
 	user, err := s.FindUserByUserName(username)
 	if err != nil {

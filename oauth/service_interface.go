@@ -9,7 +9,7 @@ import (
 	"oauth2-server/util/routes"
 )
 
-//ServiceInterface ...
+// ServiceInterface ...
 type ServiceInterface interface {
 	GetConfig() *config.Config
 	RestrictToRoles(allowedRoles ...string)
@@ -40,13 +40,13 @@ type ServiceInterface interface {
 	GetDefaultScope() string
 	ScopeExists(requestScope string) bool
 
-	Login(client *models.OauthClient, user *models.OauthUser, scope string) (*models.OauthAccessToken, *models.OauthRefereshToken, error)
+	Login(client *models.OauthClient, user *models.OauthUser, scope string) (*models.OauthAccessToken, *models.OauthRefreshToken, error)
 	GrantAuthorizationCode(client *models.OauthClient, user *models.OauthUser, expiresIn int, redirectURI, scope string) (*models.OauthAuthorizationCode, error)
-	GrandAccessToken(client *models.OauthClient, user *models.OauthUser, expiresIn int, scope string) (*models.OauthRefereshToken, error)
-	GetOrCreateRefreshToken(client *models.OauthClient, user *models.OauthUser, expiresIn int, scope string) (*models.OauthRefereshToken, error)
-	GetValidRefreshToken(token string, client *models.OauthClient) (*models.OauthRefereshToken, error)
-	Authenticate(token string) (*models.OauthAccessToken, error)
+	GrandAccessToken(client *models.OauthClient, user *models.OauthUser, expiresIn int, scope string) (*models.OauthAccessToken, error)
+	GetOrCreateRefreshToken(client *models.OauthClient, user *models.OauthUser, expiresIn int, scope string) (*models.OauthRefreshToken, error)
+	GetValidRefreshToken(token string, client *models.OauthClient) (*models.OauthRefreshToken, error)
 
+	Authenticate(token string) (*models.OauthAccessToken, error)
 	ClearUserTokens(userSession *session.UserSession)
 	Close()
 }

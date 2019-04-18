@@ -34,7 +34,7 @@ func migrate001(db *gorm.DB, name string) error {
 	if err := db.CreateTable(new(OauthUser)).Error; err != nil {
 		return fmt.Errorf("创建表OauthUser失败:%s", err)
 	}
-	if err := db.CreateTable(new(OauthRefereshToken)).Error; err != nil {
+	if err := db.CreateTable(new(OauthRefreshToken)).Error; err != nil {
 		return fmt.Errorf("创建表OauthRefereshToken失败:%s", err)
 	}
 	if err := db.CreateTable(new(OauthAccessToken)).Error; err != nil {
@@ -50,14 +50,14 @@ func migrate001(db *gorm.DB, name string) error {
 	if err != nil {
 		return fmt.Errorf("创建外键失败: %s", err)
 	}
-	err = db.Model(new(OauthRefereshToken)).AddForeignKey(
+	err = db.Model(new(OauthRefreshToken)).AddForeignKey(
 		"client_id", "oauth_client(id)",
 		"RESTRICT", "RESTRICT",
 	).Error
 	if err != nil {
 		return fmt.Errorf("创建外键失败:%s", err)
 	}
-	err = db.Model(new(OauthRefereshToken)).AddForeignKey(
+	err = db.Model(new(OauthRefreshToken)).AddForeignKey(
 		"user_id", "oauth_user(id)",
 		"RESTRICT", "RESTRICT",
 	).Error

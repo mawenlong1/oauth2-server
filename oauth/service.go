@@ -5,14 +5,14 @@ import (
 	"oauth2-server/config"
 )
 
-//Service ...
+// Service ...
 type Service struct {
 	cfg          *config.Config
 	db           *gorm.DB
 	allowedRoles []string
 }
 
-//NewService ...
+// NewService ...
 func NewService(cfg *config.Config, db *gorm.DB) *Service {
 	return &Service{
 		cfg:          cfg,
@@ -21,17 +21,17 @@ func NewService(cfg *config.Config, db *gorm.DB) *Service {
 	}
 }
 
-//GetConfig ...
+// GetConfig ...
 func (s *Service) GetConfig() *config.Config {
 	return s.cfg
 }
 
-//RestrictToRoles ..
+// RestrictToRoles ..
 func (s *Service) RestrictToRoles(allowedRoles ...string) {
 	s.allowedRoles = allowedRoles
 }
 
-//IsRoleAllowed ...
+// IsRoleAllowed ...
 func (s *Service) IsRoleAllowed(role string) bool {
 	for _, allowedRole := range s.allowedRoles {
 		if role == allowedRole {
@@ -41,7 +41,7 @@ func (s *Service) IsRoleAllowed(role string) bool {
 	return false
 }
 
-//Close ...
+// Close ...
 func (s *Service) Close() {
 
 }
