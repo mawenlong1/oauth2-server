@@ -5,32 +5,25 @@ import (
 	"oauth2-server/util/routes"
 )
 
-const (
-	tokensResource     = "tokens"
-	tokensPath         = "/" + tokensResource
-	introspectResource = "introspect"
-	introspectPath     = "/" + introspectResource
-)
-
-//RegisterRoutes ..
+// RegisterRoutes ..
 func (s *Service) RegisterRoutes(router *mux.Router, prefix string) {
 	subRouter := router.PathPrefix(prefix).Subrouter()
 	routes.AddRouters(s.GetRoutes(), subRouter)
 }
 
-//GetRoutes ..
+// GetRoutes ..
 func (s *Service) GetRoutes() []routes.Route {
 	return []routes.Route{
 		{
 			Name:        "oauth_tokens",
 			Method:      "POST",
-			Pattern:     tokensPath,
+			Pattern:     "/tokens",
 			HandlerFunc: s.tokensHandler,
 		},
 		{
 			Name:        "oauth_introspect",
 			Method:      "POST",
-			Pattern:     introspectPath,
+			Pattern:     "/introspect",
 			HandlerFunc: s.introspectHandler,
 		},
 	}

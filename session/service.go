@@ -8,7 +8,7 @@ import (
 	"oauth2-server/config"
 )
 
-//Service ...
+// Service ...
 type Service struct {
 	sessionStore   sessions.Store
 	sessionOptions *sessions.Options
@@ -17,7 +17,7 @@ type Service struct {
 	w              http.ResponseWriter
 }
 
-//UserSession ..
+// UserSession ..
 type UserSession struct {
 	ClientID     string
 	Username     string
@@ -26,19 +26,19 @@ type UserSession struct {
 }
 
 var (
-	//StorageSessionName ...
+	// StorageSessionName ...
 	StorageSessionName = "oauth2_server_session"
-	//UserSessionKey ...
+	// UserSessionKey ...
 	UserSessionKey = "oauth2_server_user"
-	//ErrSessionNotStarted ...
-	ErrSessionNotStarted = errors.New("Session not started")
+	// ErrSessionNotStarted ...
+	ErrSessionNotStarted = errors.New("session:Session not started")
 )
 
 func init() {
 	gob.Register(new(UserSession))
 }
 
-//NewService ...
+// NewService ...
 func NewService(config *config.Config, store sessions.Store) *Service {
 	return &Service{
 		sessionStore: store,
@@ -50,13 +50,13 @@ func NewService(config *config.Config, store sessions.Store) *Service {
 	}
 }
 
-//SetSessionService ...
+// SetSessionService ...
 func (s *Service) SetSessionService(r *http.Request, w http.ResponseWriter) {
 	s.r = r
 	s.w = w
 }
 
-//StartSession ...
+// StartSession ...
 func (s *Service) StartSession() error {
 	session, err := s.sessionStore.Get(s.r, StorageSessionName)
 	if err != nil {
@@ -66,19 +66,19 @@ func (s *Service) StartSession() error {
 	return nil
 }
 
-//GetUserSession ...
+// GetUserSession ...
 func (s *Service) GetUserSession() (*UserSession, error) {
 	if s.session == nil {
 		return nil, ErrSessionNotStarted
 	}
 	userSession, ok := s.session.Values[UserSessionKey].(*UserSession)
 	if !ok {
-		return nil, errors.New("User session type assertion error")
+		return nil, errors.New("session:User session type assertion error")
 	}
 	return userSession, nil
 }
 
-//SetUserSession ...
+// SetUserSession ...
 func (s *Service) SetUserSession(userSession *UserSession) error {
 	if s.session == nil {
 		return ErrSessionNotStarted
@@ -87,7 +87,7 @@ func (s *Service) SetUserSession(userSession *UserSession) error {
 	return s.session.Save(s.r, s.w)
 }
 
-//ClearUserSession ...
+// ClearUserSession ...
 func (s *Service) ClearUserSession() error {
 	if s.session == nil {
 		return ErrSessionNotStarted
@@ -96,7 +96,7 @@ func (s *Service) ClearUserSession() error {
 	return s.session.Save(s.r, s.w)
 }
 
-//SetFlashMessage ..
+// SetFlashMessage ..
 func (s *Service) SetFlashMessage(msg string) error {
 	if s.session == nil {
 		return ErrSessionNotStarted
@@ -105,19 +105,19 @@ func (s *Service) SetFlashMessage(msg string) error {
 	return s.session.Save(s.r, s.w)
 }
 
-//GetFlashMessage ...
+// GetFlashMessage ...
 func (s *Service) GetFlashMessage() (interface{}, error) {
 	if s.session == nil {
 		return nil, ErrSessionNotStarted
 	}
 	if flashes := s.session.Flashes(); len(flashes) > 0 {
-		s.session.Save(s.r, s.w)
+		_ = s.session.Save(s.r, s.w)
 		return flashes[0], nil
 	}
 	return nil, nil
 }
 
-//Close ...
+// Close ...
 func (s *Service) Close() {
 
 }

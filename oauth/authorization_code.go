@@ -8,11 +8,11 @@ import (
 
 var (
 	// ErrAuthorizationCodeNotFound ...
-	ErrAuthorizationCodeNotFound = errors.New("Authorization code not found")
+	ErrAuthorizationCodeNotFound = errors.New("oauth:Authorization code not found")
 	// ErrAuthorizationCodeExpired ...
-	ErrAuthorizationCodeExpired = errors.New("Authorization code expired")
+	ErrAuthorizationCodeExpired = errors.New("oauth:Authorization code expired")
 	// ErrInvalidRedirectURI ..
-	ErrInvalidRedirectURI = errors.New("Invalid redirect uri")
+	ErrInvalidRedirectURI = errors.New("oauth:Invalid redirect uri")
 )
 
 // GrantAuthorizationCode ...

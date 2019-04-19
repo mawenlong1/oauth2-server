@@ -10,9 +10,9 @@ import (
 
 var (
 	// ErrAccessTokenNotFound ..
-	ErrAccessTokenNotFound = errors.New("Access token not found")
+	ErrAccessTokenNotFound = errors.New("oauth:Access token not found")
 	// ErrAccessTokenExpired ..
-	ErrAccessTokenExpired = errors.New("Access token expired")
+	ErrAccessTokenExpired = errors.New("oauth:Access token expired")
 )
 
 // Authenticate ...
@@ -25,7 +25,7 @@ func (s *Service) Authenticate(token string) (*models.OauthAccessToken, error) {
 	if time.Now().UTC().After(accessToken.ExpiresAt) {
 		return nil, ErrRefreshTokenExpired
 	}
-	// 增加refreshtoken的有效期
+	// 增加refreshToken的有效期
 	query := s.db.Model(new(models.OauthRefreshToken)).Where("client_id=?", accessToken.ClientID.String)
 	if accessToken.UserID.Valid {
 		query = query.Where("user_id=?", accessToken.UserID)

@@ -8,11 +8,11 @@ import (
 )
 
 var (
-	//ErrInvalidScope ..
-	ErrInvalidScope = errors.New("Invalid scope")
+	// ErrInvalidScope ..
+	ErrInvalidScope = errors.New("oauth:Invalid scope")
 )
 
-//GetScope ..
+// GetScope ..
 func (s *Service) GetScope(requestScope string) (string, error) {
 	if requestScope == "" {
 		return s.GetDefaultScope(), nil
@@ -23,7 +23,7 @@ func (s *Service) GetScope(requestScope string) (string, error) {
 	return "", ErrInvalidScope
 }
 
-//GetDefaultScope ..
+// GetDefaultScope ..
 func (s *Service) GetDefaultScope() string {
 	var scopes []string
 	s.db.Model(new(models.OauthScope)).Where("is_default=?", true).Pluck("scope", &scopes)
@@ -31,7 +31,7 @@ func (s *Service) GetDefaultScope() string {
 	return strings.Join(scopes, " ")
 }
 
-//ScopeExists ..
+// ScopeExists ..
 func (s *Service) ScopeExists(requestScope string) bool {
 	scopes := strings.Split(requestScope, " ")
 	var count int

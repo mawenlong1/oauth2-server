@@ -9,11 +9,11 @@ import (
 
 var (
 	// ErrRefreshTokenNotFound ...
-	ErrRefreshTokenNotFound = errors.New("Referesh token not found")
+	ErrRefreshTokenNotFound = errors.New("oauth:Referesh token not found")
 	// ErrRefreshTokenExpired ..
-	ErrRefreshTokenExpired = errors.New("Refresh token expired")
+	ErrRefreshTokenExpired = errors.New("oauth:Refresh token expired")
 	// ErrRequestedScopeCannotBeGreater ...
-	ErrRequestedScopeCannotBeGreater = errors.New("Requested scope cannot be greater")
+	ErrRequestedScopeCannotBeGreater = errors.New("oauth:Requested scope cannot be greater")
 )
 
 // GetOrCreateRefreshToken ..

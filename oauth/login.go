@@ -7,7 +7,7 @@ import (
 
 var (
 	// ErrInvalidUsernameOrPassword ...
-	ErrInvalidUsernameOrPassword = errors.New("Invalid username or password")
+	ErrInvalidUsernameOrPassword = errors.New("oauth:Invalid username or password")
 )
 
 // Login ..

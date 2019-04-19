@@ -2,7 +2,7 @@ package web
 
 import (
 	"net/http"
-	"oauth2-server/log"
+	"oauth2-server/user"
 )
 
 func (s *Service) registerForm(w http.ResponseWriter, r *http.Request) {
@@ -23,7 +23,16 @@ func (s *Service) register(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	//	TODO 校验是否注册过
-	log.INFO.Println(sessionService)
+	if s.oauthService.UserExists(r.Form.Get("email")) {
+		_ = sessionService.SetFlashMessage("email 已经存在")
+		http.Redirect(w, r, r.RequestURI, http.StatusFound)
+		return
+	}
+	_, err = s.oauthService.CreateUser(user.User, r.Form.Get("email"), r.Form.Get("password"))
+	if err != nil {
+		_ = sessionService.SetFlashMessage(err.Error())
+		http.Redirect(w, r, r.RequestURI, http.StatusFound)
+		return
+	}
 	redirectWithQueryString("/web/login", r.URL.Query(), w, r)
 }

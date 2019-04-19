@@ -17,18 +17,18 @@ var (
 	MinPasswordLength = 6
 	// ErrPasswordTooShort ..
 	ErrPasswordTooShort = fmt.Errorf(
-		"密码至少%d个字符",
+		"oauth:密码至少%d个字符",
 		MinPasswordLength)
 	// ErrUserNotFound ...
-	ErrUserNotFound = errors.New("User not found")
+	ErrUserNotFound = errors.New("oauth:User not found")
 	// ErrInvalidUserPassword ...
-	ErrInvalidUserPassword = errors.New("Invaild user password")
+	ErrInvalidUserPassword = errors.New("oauth:Invaild user password")
 	// ErrCannotSetEmptyUsername ...
-	ErrCannotSetEmptyUsername = errors.New("Cannot set empty username")
+	ErrCannotSetEmptyUsername = errors.New("oauth:Cannot set empty username")
 	// ErrUserPasswordNotSet ...
-	ErrUserPasswordNotSet = errors.New("User password not set")
+	ErrUserPasswordNotSet = errors.New("oauth:User password not set")
 	// ErrUsernameTaken ...
-	ErrUsernameTaken = errors.New("Username taken")
+	ErrUsernameTaken = errors.New("oauth:Username taken")
 )
 
 // UserExists ...

@@ -3,17 +3,17 @@ package oauth
 import (
 	"errors"
 	"net/http"
-	"oauth2-server/log"
 	"oauth2-server/models"
 	"oauth2-server/util/response"
 )
 
 var (
 	// ErrInvalidGrantType ..
-	ErrInvalidGrantType = errors.New("Invalid grant type")
+	ErrInvalidGrantType = errors.New("oauth:Invalid grant type")
 	// ErrInvalidClientIDOrSecret ...
-	ErrInvalidClientIDOrSecret = errors.New("Ivalid client ID or secret")
-	tokenTypes                 = "Bearer"
+	ErrInvalidClientIDOrSecret = errors.New("oauth:Invalid client ID or secret")
+	// TokenTypes ..
+	TokenTypes = "Bearer"
 )
 
 func (s *Service) tokensHandler(w http.ResponseWriter, r *http.Request) {
@@ -67,7 +67,7 @@ func (s *Service) authorizationCodeGrant(r *http.Request, client *models.OauthCl
 		accessToken,
 		refreshToken,
 		s.cfg.Oauth.AccessTokenLifeTime,
-		tokenTypes,
+		TokenTypes,
 	)
 	if err != nil {
 		return nil, err
@@ -91,7 +91,7 @@ func (s *Service) passwordGrant(r *http.Request, client *models.OauthClient) (*A
 		accessToken,
 		refreshToken,
 		s.cfg.Oauth.AccessTokenLifeTime,
-		tokenTypes,
+		TokenTypes,
 	)
 	if err != nil {
 		return nil, err
@@ -112,7 +112,7 @@ func (s *Service) clientCredentialsGrant(r *http.Request, client *models.OauthCl
 		accessToken,
 		nil,
 		s.cfg.Oauth.AccessTokenLifeTime,
-		tokenTypes,
+		TokenTypes,
 	)
 	if err != nil {
 		return nil, err
@@ -136,7 +136,7 @@ func (s *Service) refreshTokenGrant(r *http.Request, client *models.OauthClient)
 		accessToken,
 		refreshToken,
 		s.cfg.Oauth.AccessTokenLifeTime,
-		tokenTypes,
+		TokenTypes,
 	)
 	if err != nil {
 		return nil, err
@@ -144,7 +144,17 @@ func (s *Service) refreshTokenGrant(r *http.Request, client *models.OauthClient)
 	return accessTokenResponse, nil
 }
 func (s *Service) introspectHandler(w http.ResponseWriter, r *http.Request) {
-	log.INFO.Println("暂未实现")
+	client, err := s.basicAuthClient(r)
+	if err != nil {
+		response.UnauthorizedError(w, err.Error())
+		return
+	}
+	resp, err := s.introspectToken(r, client)
+	if err != nil {
+		response.Error(w, err.Error(), getErrStatusCode(err))
+		return
+	}
+	response.WriteJSON(w, resp, 200)
 }
 
 func (s *Service) basicAuthClient(r *http.Request) (*models.OauthClient, error) {

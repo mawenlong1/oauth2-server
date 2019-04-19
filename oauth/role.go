@@ -6,11 +6,11 @@ import (
 )
 
 var (
-	//ErrRoleNotFound ...
-	ErrRoleNotFound = errors.New("Role not found")
+	// ErrRoleNotFound ...
+	ErrRoleNotFound = errors.New("oauth:Role not found")
 )
 
-//FindRoleByID ...
+// FindRoleByID ...
 func (s *Service) FindRoleByID(id string) (*models.OauthRole, error) {
 	role := new(models.OauthRole)
 	if s.db.Where("id=?", id).First(role).RecordNotFound() {

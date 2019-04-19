@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-//SessionTestSuite ...
+// SessionTestSuite ...
 type SessionTestSuite struct {
 	suite.Suite
 	cfg     *config.Config

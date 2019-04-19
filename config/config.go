@@ -27,7 +27,7 @@ type SessionConfig struct {
 	HTTPOnly bool   `default:"True"`
 }
 
-// redis配置
+// RedisConfig redis配置
 type RedisConfig struct {
 	Host         string `default:"localhost"`
 	Port         int    `default:"6379"`

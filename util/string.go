@@ -4,6 +4,7 @@ import (
 	"strings"
 )
 
+// SpaceDelimitedStringNotGreater ...
 func SpaceDelimitedStringNotGreater(first, second string) bool {
 	if first == "" {
 		return true
@@ -17,9 +18,10 @@ func SpaceDelimitedStringNotGreater(first, second string) bool {
 	return true
 }
 
+// StringInSlice ...
 func StringInSlice(s string, list []string) bool {
 	for _, b := range list {
-		if a == b {
+		if s == b {
 			return true
 		}
 	}

@@ -12,21 +12,21 @@ import (
 )
 
 var (
-	//ErrClientNotFound ..
-	ErrClientNotFound = errors.New("Client not found")
-	//ErrInvalidClientSecret ..
-	ErrInvalidClientSecret = errors.New("Invalid client Secret")
-	//ErrClientIDTaken ..
-	ErrClientIDTaken = errors.New("ClientID exists")
+	// ErrClientNotFound ..
+	ErrClientNotFound = errors.New("oauth:Client not found")
+	// ErrInvalidClientSecret ..
+	ErrInvalidClientSecret = errors.New("oauth:Invalid client Secret")
+	// ErrClientIDTaken ..
+	ErrClientIDTaken = errors.New("oauth:ClientID exists")
 )
 
-//ClientExists ...
+// ClientExists ...
 func (s *Service) ClientExists(clientID string) bool {
 	_, err := s.FindRoleByID(clientID)
 	return err == nil
 }
 
-//FindClientByClientID ..
+// FindClientByClientID ..
 func (s *Service) FindClientByClientID(clientID string) (*models.OauthClient, error) {
 	client := new(models.OauthClient)
 	notFound := s.db.Where("client_key=LOWER(?)", clientID).First(client).RecordNotFound()
@@ -36,12 +36,12 @@ func (s *Service) FindClientByClientID(clientID string) (*models.OauthClient, er
 	return client, nil
 }
 
-//CreateClient ..
+// CreateClient ..
 func (s *Service) CreateClient(clientID, secret, redirectURI string) (*models.OauthClient, error) {
 	return s.createClientCommon(s.db, clientID, secret, redirectURI)
 }
 
-//CreateClientTx ...
+// CreateClientTx ...
 func (s *Service) CreateClientTx(tx *gorm.DB, clientID, secret, redirectURI string) (*models.OauthClient, error) {
 	return s.createClientCommon(tx, clientID, secret, redirectURI)
 }
@@ -69,7 +69,7 @@ func (s *Service) createClientCommon(db *gorm.DB, clientID, secret, redirectURI 
 	return client, nil
 }
 
-//AuthClient ...
+// AuthClient ...
 func (s *Service) AuthClient(clientID, secret string) (*models.OauthClient, error) {
 	client, err := s.FindClientByClientID(clientID)
 	if err != nil {

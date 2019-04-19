@@ -49,4 +49,7 @@ type ServiceInterface interface {
 	Authenticate(token string) (*models.OauthAccessToken, error)
 	ClearUserTokens(userSession *session.UserSession)
 	Close()
+
+	NewIntrospectResponseFromAccessToken(accessToken *models.OauthAccessToken) (*IntrospectResponse, error)
+	NewIntrospectResponseFromRefreshToken(refreshToken *models.OauthRefreshToken) (*IntrospectResponse, error)
 }

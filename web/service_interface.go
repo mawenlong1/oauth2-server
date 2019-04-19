@@ -9,13 +9,13 @@ import (
 	"oauth2-server/util/routes"
 )
 
-//ServiceInterface ...
+// ServiceInterface ...
 type ServiceInterface interface {
 	GetConfig() *config.Config
 	GetOauthService() oauth.ServiceInterface
 	GetSessionService() session.ServiceInterface
 	GetRoutes() []routes.Route
-	RegisterRoutes(router *mux.Router, profix string)
+	RegisterRoutes(router *mux.Router, prefix string)
 	Close()
 
 	setSessionService(r *http.Request, w http.ResponseWriter)

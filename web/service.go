@@ -7,14 +7,14 @@ import (
 	"oauth2-server/session"
 )
 
-//Service ...
+// Service ...
 type Service struct {
 	cfg            *config.Config
 	oauthService   oauth.ServiceInterface
 	sessionService session.ServiceInterface
 }
 
-//NewService ..
+// NewService ..
 func NewService(cfg *config.Config, oauth oauth.ServiceInterface, session session.ServiceInterface) *Service {
 	return &Service{
 		cfg:            cfg,
@@ -23,22 +23,22 @@ func NewService(cfg *config.Config, oauth oauth.ServiceInterface, session sessio
 	}
 }
 
-//GetConfig ...
+// GetConfig ...
 func (s *Service) GetConfig() *config.Config {
 	return s.cfg
 }
 
-//GetOauthService ..
+// GetOauthService ..
 func (s *Service) GetOauthService() oauth.ServiceInterface {
 	return s.oauthService
 }
 
-//GetSessionService ...
+// GetSessionService ...
 func (s *Service) GetSessionService() session.ServiceInterface {
 	return s.sessionService
 }
 
-//Close ...
+// Close ...
 func (s *Service) Close() {
 
 }
