@@ -17,11 +17,11 @@ import (
 var (
 	// HealthService ..
 	HealthService health.ServiceInterface
-	//OauthService ..
+	// OauthService ..
 	OauthService oauth.ServiceInterface
-	//SessionService ...
+	// SessionService ...
 	SessionService session.ServiceInterface
-	//UserService ...
+	// UserService ...
 	UserService user.ServiceInterface
 	// WebService ..
 	WebService web.ServiceInterface
@@ -45,6 +45,7 @@ func Init(cfg *config.Config, db *gorm.DB) error {
 	if nil == reflect.TypeOf(WebService) {
 		WebService = web.NewService(cfg, OauthService, SessionService)
 	}
+	log.INFO.Println("服务启动完成")
 	return nil
 }
 

@@ -62,8 +62,8 @@ func (u *OauthUser) TableName() string {
 	return "oauth_user"
 }
 
-// OauthRefereshToken 刷新token
-type OauthRefereshToken struct {
+// OauthRefreshToken 刷新token
+type OauthRefreshToken struct {
 	MyGormModel
 	ClientID  sql.NullString `sql:"index;not null"`
 	UserID    sql.NullString `sql:"index"`
@@ -75,8 +75,8 @@ type OauthRefereshToken struct {
 }
 
 // TableName 表名
-func (rt *OauthRefereshToken) TableName() string {
-	return "oauth_referesh_token"
+func (rt *OauthRefreshToken) TableName() string {
+	return "oauth_refresh_token"
 }
 
 // OauthAccessToken 认证token
@@ -114,9 +114,9 @@ func (rt *OauthAuthorizationCode) TableName() string {
 	return "oauth_authorization_code"
 }
 
-// NewOauthRefereshToken 创建一个新的刷新token
-func NewOauthRefereshToken(client *OauthClient, user *OauthClient, expiresIn int, scope string) *OauthRefereshToken {
-	refreshToken := &OauthRefereshToken{
+// NewOauthRefreshToken 创建一个新的刷新token
+func NewOauthRefreshToken(client *OauthClient, user *OauthUser, expiresIn int, scope string) *OauthRefreshToken {
+	refreshToken := &OauthRefreshToken{
 		MyGormModel: MyGormModel{
 			ID:        uuid.New(),
 			CreatedAt: time.Now().UTC(),
@@ -133,7 +133,7 @@ func NewOauthRefereshToken(client *OauthClient, user *OauthClient, expiresIn int
 }
 
 // NewOauthAccessToken 创建一个新的token
-func NewOauthAccessToken(client *OauthClient, user *OauthClient, expiresIn int, scope string) *OauthAccessToken {
+func NewOauthAccessToken(client *OauthClient, user *OauthUser, expiresIn int, scope string) *OauthAccessToken {
 	accessToken := &OauthAccessToken{
 		MyGormModel: MyGormModel{
 			ID:        uuid.New(),
@@ -151,7 +151,7 @@ func NewOauthAccessToken(client *OauthClient, user *OauthClient, expiresIn int, 
 }
 
 // NewOauthAuthorizationCode 认证码
-func NewOauthAuthorizationCode(client *OauthClient, user *OauthClient, expiresIn int, redirectURI, scope string) *OauthAuthorizationCode {
+func NewOauthAuthorizationCode(client *OauthClient, user *OauthUser, expiresIn int, redirectURI, scope string) *OauthAuthorizationCode {
 	return &OauthAuthorizationCode{
 		MyGormModel: MyGormModel{
 			ID:        uuid.New(),
@@ -176,8 +176,8 @@ func OauthAccessTokenPreload(db *gorm.DB) *gorm.DB {
 	return PreloadWithPrefix(db, "")
 }
 
-// OauthRefereshTokenPreload 预加载
-func OauthRefereshTokenPreload(db *gorm.DB) *gorm.DB {
+// OauthRefreshTokenPreload 预加载
+func OauthRefreshTokenPreload(db *gorm.DB) *gorm.DB {
 	return PreloadWithPrefix(db, "")
 }
 

@@ -18,7 +18,7 @@ func renderTemplate(w http.ResponseWriter, name string, data map[string]interfac
 	loadTemplates()
 	tmpl, ok := templates[name]
 	if !ok {
-		return fmt.Errorf("the template %s does not exist.", name)
+		return fmt.Errorf("The template %s does not exist.", name)
 	}
 	buf := bufpool.Get()
 	defer bufpool.Put(buf)

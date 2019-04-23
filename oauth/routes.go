@@ -1,4 +1,4 @@
-package user
+package oauth
 
 import (
 	"github.com/gorilla/mux"
@@ -15,10 +15,16 @@ func (s *Service) RegisterRoutes(router *mux.Router, prefix string) {
 func (s *Service) GetRoutes() []routes.Route {
 	return []routes.Route{
 		{
-			Name:        "create_user",
+			Name:        "oauth_tokens",
 			Method:      "POST",
-			Pattern:     "/create",
-			HandlerFunc: s.createUser,
+			Pattern:     "/tokens",
+			HandlerFunc: s.tokensHandler,
+		},
+		{
+			Name:        "oauth_introspect",
+			Method:      "POST",
+			Pattern:     "/introspect",
+			HandlerFunc: s.introspectHandler,
 		},
 	}
 }

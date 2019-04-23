@@ -6,13 +6,13 @@ import (
 	"oauth2-server/util/routes"
 )
 
-//RegisterRoutes ..
+// RegisterRoutes ..
 func (s *Service) RegisterRoutes(router *mux.Router, prefix string) {
 	subRouter := router.PathPrefix(prefix).Subrouter()
 	routes.AddRouters(s.GetRoutes(), subRouter)
 }
 
-//GetRoutes ..
+// GetRoutes ..
 func (s *Service) GetRoutes() []routes.Route {
 	return []routes.Route{
 		{
@@ -23,6 +23,71 @@ func (s *Service) GetRoutes() []routes.Route {
 			Middlewares: []negroni.Handler{
 				new(parseFormMiddleware),
 				newGuestMiddleware(s),
+				newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "register",
+			Method:      "POST",
+			Pattern:     "/register",
+			HandlerFunc: s.register,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newGuestMiddleware(s),
+				newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "login_form",
+			Method:      "GET",
+			Pattern:     "/login",
+			HandlerFunc: s.loginForm,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newGuestMiddleware(s),
+				newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "login",
+			Method:      "POST",
+			Pattern:     "/login",
+			HandlerFunc: s.login,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newGuestMiddleware(s),
+				newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "logout",
+			Method:      "GET",
+			Pattern:     "/logout",
+			HandlerFunc: s.logout,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+			},
+		},
+		{
+			Name:        "authorize_form",
+			Method:      "GET",
+			Pattern:     "/authorize",
+			HandlerFunc: s.authorizeForm,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "authorize",
+			Method:      "POST",
+			Pattern:     "/authorize",
+			HandlerFunc: s.authorize,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
 				newClientMiddleware(s),
 			},
 		},

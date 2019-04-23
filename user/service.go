@@ -2,24 +2,24 @@ package user
 
 import "oauth2-server/oauth"
 
-//Service ...
+// Service ...
 type Service struct {
 	oauthService oauth.ServiceInterface
 }
 
-//NewService ..
+// NewService ..
 func NewService(oauthService oauth.ServiceInterface) *Service {
 	return &Service{
 		oauthService: oauthService,
 	}
 }
 
-//GetOauthService ...
+// GetOauthService ...
 func (s *Service) GetOauthService() oauth.ServiceInterface {
 	return s.oauthService
 }
 
-//Close ...
+// Close ...
 func (s *Service) Close() {
 
 }

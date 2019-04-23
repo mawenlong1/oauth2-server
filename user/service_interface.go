@@ -5,7 +5,7 @@ import (
 	"oauth2-server/util/routes"
 )
 
-//ServiceInterface ...
+// ServiceInterface ...
 type ServiceInterface interface {
 	GetRoutes() []routes.Route
 	RegisterRoutes(router *mux.Router, prefix string)

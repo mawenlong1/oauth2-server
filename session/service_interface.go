@@ -2,7 +2,7 @@ package session
 
 import "net/http"
 
-//ServiceInterface ...
+// ServiceInterface ...
 type ServiceInterface interface {
 	SetSessionService(r *http.Request, w http.ResponseWriter)
 	StartSession() error

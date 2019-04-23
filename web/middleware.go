@@ -10,9 +10,9 @@ import (
 type parseFormMiddleware struct {
 }
 
-//ServeHTTP ....
+// ServeHTTP ....
 func (m *parseFormMiddleware) ServeHTTP(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-	//表单解析
+	// 表单解析
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -39,7 +39,7 @@ func (m *guestMiddleware) ServeHTTP(w http.ResponseWriter, r *http.Request, next
 	next(w, r)
 }
 
-//登录校验
+// 登录校验
 type loggedInMiddleware struct {
 	service ServiceInterface
 }
@@ -88,6 +88,11 @@ func newClientMiddleware(service ServiceInterface) *clientMiddleware {
 }
 
 func (m *clientMiddleware) ServeHTTP(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-	log.INFO.Println("clientMiddleware，需要调用oauth，暂时未实现")
+	client, err := m.service.GetOauthService().FindClientByClientID(r.Form.Get("client_id"))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	context.Set(r, clientKey, client)
 	next(w, r)
 }

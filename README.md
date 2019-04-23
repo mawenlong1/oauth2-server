@@ -1,4 +1,26 @@
-oauth2服务器
+# oauth2服务器
+## 使用步骤
+### 注意
+> 由于项目使用的是Go Modules作为包管理因此go的版本至少为go 1.11。
+### 构建
+```
+go build 
+```
+下载不了的包需要翻墙或者在.mod里面添加替代的库，参考[在go modules中使用replace替换无法直接获取的package]('https://www.cnblogs.com/apocelipes/p/9609895.html')
+### 初始化
+```
+./oauth2-server init
+```
+运行会创建相关的表
+### 加载数据
+```
+./oauth2-server loaddata oauth/fixtures/scopes.yml oauth/fixtures/roles.yml oauth/fixtures/test_clients.yml oauth/fixtures/test_users.yml
+```
+加载测试数据数据(数据在oauth/fixtures目录下)
+### 运行
+```
+./oauth2-server run
+```
 
 ## go get翻墙(前提安装ss)
 - windows
