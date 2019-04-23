@@ -59,5 +59,37 @@ func (s *Service) GetRoutes() []routes.Route {
 				newClientMiddleware(s),
 			},
 		},
+		{
+			Name:        "logout",
+			Method:      "GET",
+			Pattern:     "/logout",
+			HandlerFunc: s.logout,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+			},
+		},
+		{
+			Name:        "authorize_form",
+			Method:      "GET",
+			Pattern:     "/authorize",
+			HandlerFunc: s.authorizeForm,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "authorize",
+			Method:      "POST",
+			Pattern:     "/authorize",
+			HandlerFunc: s.authorize,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				newClientMiddleware(s),
+			},
+		},
 	}
 }

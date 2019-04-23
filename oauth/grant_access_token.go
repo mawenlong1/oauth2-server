@@ -16,7 +16,7 @@ func (s *Service) GrandAccessToken(client *models.OauthClient, user *models.Oaut
 	} else {
 		query = query.Where("user_id is NULL")
 	}
-	if err := query.Where("expires_at<=?", time.Now()).Delete(new(models.OauthUser)).Error; err != nil {
+	if err := query.Where("expires_at<=?", time.Now()).Delete(new(models.OauthAccessToken)).Error; err != nil {
 		tx.Rollback()
 		return nil, err
 	}

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"oauth2-server/cmd"
 	"os"
@@ -15,7 +14,6 @@ var (
 )
 
 func init() {
-	fmt.Println("init")
 	app = cli.NewApp()
 	app.Name = "oauth2"
 	app.Usage = "Oauth 2.0 Server"
