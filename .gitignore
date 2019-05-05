@@ -1,6 +1,5 @@
 *.exe
 .idea/
 .vscode/
-vendor/
 .DS_Store
 oauth2-server

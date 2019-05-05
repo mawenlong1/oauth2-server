@@ -1,0 +1,52 @@
+# github.com/BurntSushi/toml v0.3.1
+github.com/BurntSushi/toml
+# github.com/RichardKnop/go-fixtures v0.0.0-20181101035649-15577dcaa372
+github.com/RichardKnop/go-fixtures
+# github.com/RichardKnop/logging v0.0.0-20181101035820-b1d5d44c82d6
+github.com/RichardKnop/logging
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
+# github.com/go-sql-driver/mysql v1.4.1
+github.com/go-sql-driver/mysql
+# github.com/google/uuid v1.0.0
+github.com/google/uuid
+# github.com/gorilla/context v1.1.1
+github.com/gorilla/context
+# github.com/gorilla/mux v1.6.2
+github.com/gorilla/mux
+# github.com/gorilla/securecookie v1.1.1
+github.com/gorilla/securecookie
+# github.com/gorilla/sessions v1.1.3
+github.com/gorilla/sessions
+# github.com/jinzhu/configor v1.0.0
+github.com/jinzhu/configor
+# github.com/jinzhu/gorm v1.9.4
+github.com/jinzhu/gorm
+github.com/jinzhu/gorm/dialects/mysql
+# github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a
+github.com/jinzhu/inflection
+# github.com/oxtoacart/bpool v0.0.0-20190227141107-8c4636f812cc
+github.com/oxtoacart/bpool
+# github.com/pborman/uuid v1.2.0
+github.com/pborman/uuid
+# github.com/phyber/negroni-gzip v0.0.0-20180113114010-ef6356a5d029
+github.com/phyber/negroni-gzip/gzip
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/stretchr/testify v1.3.0
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/suite
+github.com/stretchr/testify/require
+# github.com/urfave/cli v1.20.0
+github.com/urfave/cli
+# github.com/urfave/negroni v1.0.0
+github.com/urfave/negroni
+# golang.org/x/crypto v0.0.0-20190417174047-f416ebab96af
+golang.org/x/crypto/bcrypt
+golang.org/x/crypto/blowfish
+# google.golang.org/appengine v1.4.0
+google.golang.org/appengine/cloudsql
+# gopkg.in/tylerb/graceful.v1 v1.2.15
+gopkg.in/tylerb/graceful.v1
+# gopkg.in/yaml.v2 v2.2.2
+gopkg.in/yaml.v2
