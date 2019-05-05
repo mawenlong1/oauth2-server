@@ -37,8 +37,8 @@ func main() {
 			},
 		},
 		{
-			Name:  "loaddata",
-			Usage: "加载demo数据",
+			Name:  "loadData",
+			Usage: "加载测试数据",
 			Action: func(c *cli.Context) error {
 				return cmd.LoadData(c.Args(), configFile)
 			},

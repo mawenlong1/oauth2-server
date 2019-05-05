@@ -14,7 +14,7 @@ go build
 运行会创建相关的表
 ### 加载数据
 ```
-./oauth2-server loaddata oauth/fixtures/scopes.yml oauth/fixtures/roles.yml oauth/fixtures/test_clients.yml oauth/fixtures/test_users.yml
+./oauth2-server loadData oauth/fixtures/scopes.yml oauth/fixtures/roles.yml oauth/fixtures/test_clients.yml oauth/fixtures/test_users.yml
 ```
 加载测试数据数据(数据在oauth/fixtures目录下)
 ### 运行
