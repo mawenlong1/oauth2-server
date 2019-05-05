@@ -1,9 +1,9 @@
 database:
   type: mysql
   host: 111.231.228.108
-  port: 3306
+  port: 4446
   user: root
-  password: 123456
+  password: mwltest
   databasename: oauth2-server
   maxidleconns: 5
   maxopenconns: 5

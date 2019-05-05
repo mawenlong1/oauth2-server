@@ -11,7 +11,7 @@ func redirectWithQueryString(to string, query url.Values, w http.ResponseWriter,
 }
 
 func redirectWithFragment(to string, query url.Values, w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, fmt.Sprintf("%s%s", to, query.Encode()), http.StatusFound)
+	http.Redirect(w, r, fmt.Sprintf("%s#%s", to, query.Encode()), http.StatusFound)
 }
 func getQueryString(query url.Values) string {
 	encode := query.Encode()

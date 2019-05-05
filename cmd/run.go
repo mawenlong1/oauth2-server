@@ -34,6 +34,8 @@ func Run(configFile string) error {
 	router := mux.NewRouter()
 	services.HealthService.RegisterRouters(router, "/v1")
 	services.WebService.RegisterRoutes(router, "/web")
+	services.UserService.RegisterRoutes(router, "/v1/user")
+	services.OauthService.RegisterRoutes(router, "/v1/oauth")
 	app.UseHandler(router)
 	graceful.Run(":"+strconv.Itoa(cfg.ServerPort), 10*time.Second, app)
 	return nil
