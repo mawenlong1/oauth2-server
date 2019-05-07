@@ -6,6 +6,9 @@ github.com/RichardKnop/go-fixtures
 github.com/RichardKnop/logging
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
+# github.com/garyburd/redigo v1.6.0
+github.com/garyburd/redigo/redis
+github.com/garyburd/redigo/internal
 # github.com/go-sql-driver/mysql v1.4.1
 github.com/go-sql-driver/mysql
 # github.com/google/uuid v1.0.0
@@ -46,6 +49,8 @@ golang.org/x/crypto/bcrypt
 golang.org/x/crypto/blowfish
 # google.golang.org/appengine v1.4.0
 google.golang.org/appengine/cloudsql
+# gopkg.in/boj/redistore.v1 v1.0.0-20160128113310-fc113767cd6b
+gopkg.in/boj/redistore.v1
 # gopkg.in/tylerb/graceful.v1 v1.2.15
 gopkg.in/tylerb/graceful.v1
 # gopkg.in/yaml.v2 v2.2.2
