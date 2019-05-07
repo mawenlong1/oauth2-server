@@ -26,7 +26,7 @@ func (suite *SessionTestSuite) TestService() {
 	userSession, err = suite.service.GetUserSession()
 	assert.Nil(suite.T(), userSession)
 	if assert.NotNil(suite.T(), err) {
-		assert.Equal(suite.T(), "User session type assertion error", err.Error())
+		assert.Equal(suite.T(), "session:User session type assertion error", err.Error())
 	}
 	// 设置用户session
 	err = suite.service.SetUserSession(&session.UserSession{
@@ -52,6 +52,6 @@ func (suite *SessionTestSuite) TestService() {
 	userSession, err = suite.service.GetUserSession()
 	assert.Nil(suite.T(), userSession)
 	if assert.NotNil(suite.T(), err) {
-		assert.Equal(suite.T(), "User session type assertion error", err.Error())
+		assert.Equal(suite.T(), "session:User session type assertion error", err.Error())
 	}
 }

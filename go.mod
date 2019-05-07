@@ -4,6 +4,7 @@ require (
 	github.com/RichardKnop/go-fixtures v0.0.0-20181101035649-15577dcaa372
 	github.com/RichardKnop/logging v0.0.0-20181101035820-b1d5d44c82d6
 	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
+	github.com/garyburd/redigo v1.6.0 // indirect
 	github.com/gorilla/context v1.1.1
 	github.com/gorilla/mux v1.6.2
 	github.com/gorilla/sessions v1.1.3
@@ -18,5 +19,6 @@ require (
 	github.com/urfave/negroni v1.0.0
 	golang.org/x/crypto v0.0.0-20190417174047-f416ebab96af
 	golang.org/x/sys v0.0.0-20190416152802-12500544f89f // indirect
+	gopkg.in/boj/redistore.v1 v1.0.0-20160128113310-fc113767cd6b
 	gopkg.in/tylerb/graceful.v1 v1.2.15
 )

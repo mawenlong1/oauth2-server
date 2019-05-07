@@ -1,9 +1,9 @@
 package session_test
 
 import (
-	"github.com/gorilla/sessions"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
+	"gopkg.in/boj/redistore.v1"
 	"net/http"
 	"net/http/httptest"
 	"oauth2-server/config"
@@ -26,7 +26,9 @@ func (suite *SessionTestSuite) SetupSuite() {
 	r, err := http.NewRequest("GET", "http://1.2.3.4/foo/bar", nil)
 	assert.NoError(suite.T(), err, "request setup should not get an error")
 	w := httptest.NewRecorder()
-	suite.service = session.NewService(suite.cfg, sessions.NewCookieStore([]byte(suite.cfg.Session.Secret)))
+	store, err := redistore.NewRediStore(10, "tcp", "111.231.228.108:6379", "", []byte(suite.cfg.Session.Secret))
+	suite.service = session.NewService(suite.cfg, store)
+	// suite.service = session.NewService(suite.cfg, sessions.NewCookieStore([]byte(suite.cfg.Session.Secret)))
 	suite.service.SetSessionService(r, w)
 }
 

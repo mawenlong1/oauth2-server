@@ -32,6 +32,7 @@ type RedisConfig struct {
 	Host         string `default:"localhost"`
 	Port         int    `default:"6379"`
 	Password     string `default:""`
+	NetWork      string `default:"tcp"`
 	MaxIdleConns int    `default:"10"`
 }
 
