@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/gorilla/sessions"
+	"fmt"
 	"oauth2-server/config"
 	"oauth2-server/health"
 	"oauth2-server/log"
@@ -12,6 +12,7 @@ import (
 	"reflect"
 
 	"github.com/jinzhu/gorm"
+	"gopkg.in/boj/redistore.v1"
 )
 
 var (
@@ -37,7 +38,13 @@ func Init(cfg *config.Config, db *gorm.DB) error {
 		OauthService = oauth.NewService(cfg, db)
 	}
 	if nil == reflect.TypeOf(SessionService) {
-		SessionService = session.NewService(cfg, sessions.NewCookieStore([]byte(cfg.Session.Secret)))
+		address := fmt.Sprintf("%s:%d", cfg.Redis.Host, cfg.Redis.Port)
+		store, err := redistore.NewRediStore(cfg.Redis.MaxIdleConns, cfg.Redis.NetWork, address, "", []byte(cfg.Session.Secret))
+		if err != nil {
+			panic(err)
+		}
+		store.SetMaxAge(24 * 3600)
+		SessionService = session.NewService(cfg, store)
 	}
 	if nil == reflect.TypeOf(UserService) {
 		UserService = user.NewService(OauthService)

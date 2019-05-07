@@ -56,7 +56,7 @@ func (s *Service) SetSessionService(r *http.Request, w http.ResponseWriter) {
 	s.w = w
 }
 
-// StartSession ...
+// StartSession 根据请求获取session
 func (s *Service) StartSession() error {
 	session, err := s.sessionStore.Get(s.r, StorageSessionName)
 	if err != nil {
@@ -66,7 +66,7 @@ func (s *Service) StartSession() error {
 	return nil
 }
 
-// GetUserSession ...
+// GetUserSession 获取保存在session中的信息userSession
 func (s *Service) GetUserSession() (*UserSession, error) {
 	if s.session == nil {
 		return nil, ErrSessionNotStarted
@@ -78,7 +78,7 @@ func (s *Service) GetUserSession() (*UserSession, error) {
 	return userSession, nil
 }
 
-// SetUserSession ...
+// SetUserSession 将userSession设置到session中
 func (s *Service) SetUserSession(userSession *UserSession) error {
 	if s.session == nil {
 		return ErrSessionNotStarted
@@ -87,12 +87,14 @@ func (s *Service) SetUserSession(userSession *UserSession) error {
 	return s.session.Save(s.r, s.w)
 }
 
-// ClearUserSession ...
+// ClearUserSession 删除保存在session的userSession
 func (s *Service) ClearUserSession() error {
 	if s.session == nil {
 		return ErrSessionNotStarted
 	}
 	delete(s.session.Values, UserSessionKey)
+	// s.session.Options.MaxAge = -1
+	// _ = s.session.Save(s.r, s.w)
 	return s.session.Save(s.r, s.w)
 }
 
