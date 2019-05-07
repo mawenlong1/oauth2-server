@@ -74,8 +74,30 @@ func (m *loggedInMiddleware) ServeHTTP(w http.ResponseWriter, r *http.Request, n
 
 }
 
-func (m *loggedInMiddleware) authenticate(session *session.UserSession) error {
-	log.INFO.Println("clientMiddleware，需要调用oauth，暂时未实现")
+func (m *loggedInMiddleware) authenticate(userSession *session.UserSession) error {
+	log.INFO.Println("检查token是否有效，如果无效重新生成")
+	_, err := m.service.GetOauthService().Authenticate(userSession.AccessToken)
+	if err == nil {
+		return nil
+	}
+	client, err := m.service.GetOauthService().FindClientByClientID(userSession.ClientID)
+	if err != nil {
+		return err
+	}
+	theRefreshToken, err := m.service.GetOauthService().GetValidRefreshToken(userSession.RefreshToken, client)
+	if err != nil {
+		return err
+	}
+	accessToken, refreshToken, err := m.service.GetOauthService().Login(
+		theRefreshToken.Client,
+		theRefreshToken.User,
+		theRefreshToken.Scope,
+	)
+	if err != nil {
+		return err
+	}
+	userSession.AccessToken = accessToken.Token
+	userSession.RefreshToken = refreshToken.Token
 	return nil
 }
 
