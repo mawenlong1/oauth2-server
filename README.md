@@ -22,6 +22,34 @@ go build
 ./oauth2-server run
 ```
 
+## 程序测试
+### 授权码模式
+- 参考(http://tools.ietf.org/html/rfc6749#section-4.1)
+- 浏览器发起授权码请求
+```
+http://localhost:3001/web/authorize?client_id=test_client_1&redirect_uri=https://www.example.com&response_type=code&state=somestate&scope=read_write
+```
+- 提示登录，可以注册然后登录
+![login](images/login.png "login")
+- 提示用户是否授权应用(test_client_1)访问用户的用户信息
+![login](images/auth.png "auth")
+- 同意授权，则重定向到应用制定的uri（redirect_uri的值），同时在uri中有授权码。
+![login](images/success.png "success")
+响应：
+```
+https://www.example.com/?code=2d6779fd-41a6-41a5-95b4-d881a24c9a39&state=somestate
+```
+- 拒绝授权
+![login](images/failed.png "failed")
+响应：
+```
+https://www.example.com/?error=access_denied&state=somestate
+```
+- 使用授权码可以获取访问的token
+
+### 
+
+
 ## go get翻墙(前提安装ss)
 - windows
 新建proxy.bat并添加到PATH中
