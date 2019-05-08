@@ -1,0 +1,54 @@
+@baseUrl = 127.0.0.1:3001
+###
+// 授权码获取访问token
+
+// 授权码需要访问页面获取
+@authorization_code = 00428f34-d6db-4bc6-92e6-3e1f53b72993
+
+# @name authorizationCode
+POST http://{{baseUrl}}/v1/oauth/tokens HTTP/1.1
+?code={{authorization_code}}
+&grant_type=authorization_code
+&redirect_uri=https://www.example.com
+&scope=read_write
+Authorization: Basic test_client_1 test_secret
+###
+// 用户名密码模式
+
+# @name password
+POST http://{{baseUrl}}/v1/oauth/tokens HTTP/1.1
+?grant_type=password
+&username=mwl@123
+&password=123123
+&scope=read_write
+Authorization: Basic test_client_1 test_secret
+
+###
+// 客户端模式
+
+# @name clientCredentials
+POST http://{{baseUrl}}/v1/oauth/tokens?grant_type=client_credentials&scope=read_write HTTP/1.1
+Authorization: Basic test_client_1 test_secret
+
+### 
+//令牌校验
+
+// access_token可以使用authorizationCode，password，clientCredentials以及简化模式获取的accesstoken
+@access_token = {{password.response.body.access_token}}
+
+POST http://{{baseUrl}}/v1/oauth/introspect
+?token={{access_token}}
+&token_type_hint=access_token
+Authorization: Basic test_client_1 test_secret
+
+
+### 
+//刷新令牌
+
+// access_token可以使用authorizationCode，password获取的accesstoken
+@refresh_token = {{password.response.body.refresh_token}}
+
+POST http://{{baseUrl}}/v1/oauth/tokens
+?refresh_token={{refresh_token}}
+&grant_type=refresh_token
+Authorization: Basic test_client_1 test_secret

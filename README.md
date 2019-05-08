@@ -73,7 +73,7 @@ https://www.example.com/#access_token=9769f172-3e97-4f0d-9207-180612b047bd&expir
 ### 用户名密码模式
 - post请求
 ```
-curl -X POST --user test_client_1:test_secret http://localhost:3001/v1/oauth/tokens -d "grant_type=password&username=mwl@123&password=123&scope=read_write"
+curl -X POST --user test_client_1:test_secret http://localhost:3001/v1/oauth/tokens -d "grant_type=password&username=mwl@123&password=123123&scope=read_write"
 ```
 - 响应
 ```json

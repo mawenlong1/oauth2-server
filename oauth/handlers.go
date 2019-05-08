@@ -3,6 +3,7 @@ package oauth
 import (
 	"errors"
 	"net/http"
+	"oauth2-server/log"
 	"oauth2-server/models"
 	"oauth2-server/util/response"
 )
@@ -40,8 +41,9 @@ func (s *Service) tokensHandler(w http.ResponseWriter, r *http.Request) {
 	resp, err := grantHandler(r, client)
 	if err != nil {
 		response.Error(w, err.Error(), getErrStatusCode(err))
+	} else {
+		response.WriteJSON(w, resp, 200)
 	}
-	response.WriteJSON(w, resp, 200)
 }
 
 func (s *Service) authorizationCodeGrant(r *http.Request, client *models.OauthClient) (*AccessTokenResponse, error) {
@@ -159,6 +161,7 @@ func (s *Service) introspectHandler(w http.ResponseWriter, r *http.Request) {
 
 func (s *Service) basicAuthClient(r *http.Request) (*models.OauthClient, error) {
 	clientID, secret, ok := r.BasicAuth()
+	log.INFO.Println("客户端的", clientID, secret, r.Header.Get("Authorization"))
 	if !ok {
 		return nil, ErrInvalidClientIDOrSecret
 	}
