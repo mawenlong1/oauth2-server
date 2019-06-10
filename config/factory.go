@@ -44,7 +44,7 @@ func NewDefaultConfig() *Config {
 func NewConfig(configFile string) *Config {
 	if configFile != "" {
 		config := &Config{}
-		configor.Load(config, configFile)
+		_ = configor.Load(config, configFile)
 		return config
 	}
 	return DefaultConfig

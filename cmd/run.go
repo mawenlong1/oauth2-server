@@ -30,7 +30,6 @@ func Run(configFile string) error {
 	app.Use(negroni.NewLogger())
 	app.Use(gzip.Gzip(gzip.DefaultCompression))
 	app.Use(negroni.NewStatic(http.Dir("public")))
-	// app := negroni.Classic()
 	router := mux.NewRouter()
 	services.HealthService.RegisterRouters(router, "/v1")
 	services.WebService.RegisterRoutes(router, "/web")
