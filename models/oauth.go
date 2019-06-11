@@ -48,7 +48,7 @@ func (r *OauthRole) TableName() string {
 	return "oauth_role"
 }
 
-// OauthUser  ..
+// OauthUser 认证用户
 type OauthUser struct {
 	MyGormModel
 	RoleID   sql.NullString `sql:"type:varchar(20);index;not null"`
@@ -150,7 +150,7 @@ func NewOauthAccessToken(client *OauthClient, user *OauthUser, expiresIn int, sc
 	return accessToken
 }
 
-// NewOauthAuthorizationCode 认证码
+// NewOauthAuthorizationCode 创建新的认证码
 func NewOauthAuthorizationCode(client *OauthClient, user *OauthUser, expiresIn int, redirectURI, scope string) *OauthAuthorizationCode {
 	return &OauthAuthorizationCode{
 		MyGormModel: MyGormModel{
