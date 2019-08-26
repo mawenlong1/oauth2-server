@@ -27,7 +27,7 @@ type SessionConfig struct {
 	HTTPOnly bool   `default:"True"`
 }
 
-// RedisConfig redis配置
+// RedisConfig redis信息配置
 type RedisConfig struct {
 	Host         string `default:"localhost"`
 	Port         int    `default:"6379"`
@@ -36,7 +36,7 @@ type RedisConfig struct {
 	MaxIdleConns int    `default:"10"`
 }
 
-// Config 总体配置
+// Config 总配置
 type Config struct {
 	Database      DatabaseConfig
 	Oauth         OauthConfig
