@@ -28,7 +28,7 @@ func renderTemplate(w http.ResponseWriter, name string, data map[string]interfac
 	}
 	w.Header().Set("X-Frame-Options", "deny")
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	buf.WriteTo(w)
+	_, _ = buf.WriteTo(w)
 	return nil
 }
 func loadTemplates() {
