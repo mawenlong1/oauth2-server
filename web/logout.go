@@ -14,6 +14,6 @@ func (s *Service) logout(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	s.oauthService.ClearUserTokens(userSession)
-	sessionService.ClearUserSession()
+	_ = sessionService.ClearUserSession()
 	redirectWithQueryString("/web/login", r.URL.Query(), w, r)
 }
