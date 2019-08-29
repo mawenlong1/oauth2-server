@@ -86,7 +86,7 @@ type OauthAccessToken struct {
 	UserID    sql.NullString `sql:"index"`
 	Client    *OauthClient
 	User      *OauthUser
-	Token     string    `sql:"type:varchar(40);unique;not nulll"`
+	Token     string    `sql:"type:varchar(40);unique;not null"`
 	ExpiresAt time.Time `sql:"not null;DEFAULT:current_timestamp"`
 	Scope     string    `sql:"type:varchar(200);not null"`
 }
