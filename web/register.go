@@ -24,7 +24,7 @@ func (s *Service) register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if s.oauthService.UserExists(r.Form.Get("email")) {
-		_ = sessionService.SetFlashMessage("email 已经存在")
+		_ = sessionService.SetFlashMessage("邮件已经存在！")
 		http.Redirect(w, r, r.RequestURI, http.StatusFound)
 		return
 	}

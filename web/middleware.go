@@ -75,7 +75,7 @@ func (m *loggedInMiddleware) ServeHTTP(w http.ResponseWriter, r *http.Request, n
 }
 
 func (m *loggedInMiddleware) authenticate(userSession *session.UserSession) error {
-	log.INFO.Println("检查token是否有效，如果无效重新生成。")
+	log.INFO.Println("检查token是否有效，如果无效请重新生成。")
 	_, err := m.service.GetOauthService().Authenticate(userSession.AccessToken)
 	if err == nil {
 		return nil
